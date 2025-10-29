@@ -1,0 +1,4 @@
+lask
+google-generativeai
+python-dotenv
+flask-cors

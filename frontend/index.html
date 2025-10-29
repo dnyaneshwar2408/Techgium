@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&T Manufacturing Co-Pilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>L&T Manufacturing Co-Pilot</h1>
+        <p>Describe the manufacturing plan you need to generate (e.g., "I need to assemble the PNL-450 control panel").</p>
+        
+        <textarea id="prompt-input" rows="3" placeholder="Enter your request here..."></textarea>
+        <button id="generate-btn">Generate Plan</button>
+        <div id="loading" class="hidden">Generating...</div>
+        
+        <div id="results-container" class="hidden">
+            <div class="card">
+                <h2>eBOM (Required Parts)</h2>
+                <ul id="ebom-list"></ul>
+            </div>
+            <div class="card">
+                <h2>mBOM (Manufacturing Steps)</h2>
+                <ul id="mbom-list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-backdrop" class="hidden">
+        <div id="modal-content">
+            <span id="close-modal">&times;</span>
+            <h2>Source Material: <span id="modal-part-name"></span></h2>
+            
+            <div class="modal-body">
+                <div class="map-container">
+                    <img src="factory_map.png" alt="Factory Map" />
+                    <div class="pin" id="pin-Station-A" data-location="Station A">A</div>
+                    <div class="pin" id="pin-Station-B" data-location="Station B">B</div>
+                    <div class="pin" id="pin-Station-C" data-location="Station C">C</div>
+                    <div class="pin" id="pin-Main-Warehouse" data-location="Main Warehouse">WH</div>
+                </div>
+                
+                <div class="request-form">
+                    <h3>AI Sourcing Advice</h3>
+                    <div id="ai-advice"></div>
+                    <form id="request-form">
+                        <label for="request-qty">Quantity to Request:</label>
+                        <input type="number" id="request-qty" min="1" />
+                        
+                        <label for="request-source">Source Location:</label>
+                        <select id="request-source"></select>
+                        
+                        <button type="submit" id="raise-request-btn">Raise Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
